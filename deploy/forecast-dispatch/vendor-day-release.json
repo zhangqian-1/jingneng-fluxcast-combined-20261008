@@ -1,0 +1,39 @@
+{
+    "image":  "ghcr.io/zhangqian-1/jingneng-power-forecast-observations-20261008:7station-platform-v1-amd64-4a38c670cfcf-37716474467-1",
+    "digest":  "ghcr.io/zhangqian-1/jingneng-power-forecast-observations-20261008@sha256:e22497c10e43e1204c1fe952080e1931750af3d10b514a0727f6a7e04f8e013a",
+    "platform":  "linux/amd64",
+    "commit":  "4a38c670cfcf1271244a5127018a618ecdcdc301",
+    "model":  "trend_detail_7station_2025_v1",
+    "platform_contract":  "fluxcast_v1",
+    "api_timezone":  "UTC",
+    "training_timezone":  "Asia/Shanghai",
+    "time_policy":  "utc_to_asia_shanghai_v1",
+    "timezone_basis":  "user_confirmed_asia_shanghai",
+    "utc_production_acceptance":  "pending",
+    "compose_smoke_test":  "passed",
+    "container_recreation_test":  "passed",
+    "observations_smoke_test":  "passed",
+    "observations_recreation_test":  "passed",
+    "metrics":  {
+                    "points":  7008,
+                    "mae_mw":  261.78188046448753,
+                    "rmse_mw":  357.07122226031845,
+                    "mape_percent":  10.877052395353715,
+                    "smape_percent":  11.017159508991925,
+                    "r2":  0.7366573609453688,
+                    "actual_mean_mw":  2630.747121784807,
+                    "predicted_mean_mw":  2578.912300898973
+                },
+    "image_id":  "sha256:17bec4da9077700a5c1109f9fe424b7b4113730d7535402a6b9630334b38c7cd",
+    "offline_image":  {
+                          "file":  "image.tar.gz",
+                          "sha256":  "f4c083e2ec5d819ea9e6f344a56a658a559e86a0d8b3bc143eca91e92ac9bcda",
+                          "bytes":  613984905,
+                          "export_import_test":  "passed",
+                          "import_prediction_test":  "passed",
+                          "import_observations_test":  "passed"
+                      },
+    "archive":  "offline-image-amd64-4a38c670cfcf-37716474467-1.zip",
+    "archive_sha256":  "f0d33f7f474d47045ff758f54037d8767b4c3eab488ded273417312211647c58",
+    "upstream_release":  "https://github.com/zhangqian-1/jingneng-power-forecast-observations-20261008/releases/tag/v7station-platform-4a38c670cfcf"
+}

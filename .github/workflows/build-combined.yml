@@ -1,0 +1,114 @@
+name: Build and verify combined delivery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: combined-delivery
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      PYTHONUNBUFFERED: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      GH_TOKEN: ${{ github.token }}
+      COMPOSE_PROJECT_NAME: fluxcast-single-verify-cloud
+      DISPATCH_PORT: "18868"
+      EVIDENCE: output/forecast-integration/cloud-verified
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Prepare build identity and dependencies
+        run: |
+          set -euo pipefail
+          version="$(TZ=Asia/Shanghai date +%Y%m%d)-r${GITHUB_RUN_ID}a${GITHUB_RUN_ATTEMPT}"
+          echo "DELIVERY_VERSION=$version" >> "$GITHUB_ENV"
+          echo "DISPATCH_IMAGE=jingneng-fluxcast-all-in-one:$version" >> "$GITHUB_ENV"
+          mkdir -p output/cloud
+          python -m pip install --disable-pip-version-check uv==0.12.3
+          uv sync --all-groups --frozen
+          docker version
+      - name: Verify source boundary and run regression
+        run: |
+          set -euo pipefail
+          uv run python scripts/check_integration_scope.py > output/cloud/scope.json
+          uv run python scripts/check_delivery.py
+          uv run ruff check .
+          uv run pytest -q --junitxml=output/cloud/pytest.xml
+      - name: Download and verify both original images
+        run: |
+          uv run python scripts/prepare_cloud_build.py all
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          with open(os.environ['GITHUB_ENV'], 'a') as stream:
+              for name, manifest in [('POWER_FORECAST_IMAGE','vendor-release.json'),
+                                     ('DAY_FORECAST_IMAGE','vendor-day-release.json')]:
+                  record=json.loads((Path('deploy/forecast-dispatch')/manifest).read_text())
+                  stream.write(name+'='+record['image']+'\n')
+          PY
+          df -h .
+      - name: Build joint container
+        run: docker compose --progress plain --env-file deploy/forecast-dispatch/.env.example -f deploy/forecast-dispatch/compose.yaml build
+      - name: Start isolated verification container
+        run: docker compose --env-file deploy/forecast-dispatch/.env.example -f deploy/forecast-dispatch/compose.yaml -f deploy/forecast-dispatch/compose.verify.yaml up -d --no-build --pull never --wait --wait-timeout 360
+      - name: Verify real prediction and unified response
+        run: uv run python scripts/check_forecast_bridge_live.py --combined --forecast-url http://127.0.0.1:18868 --dispatch-container fluxcast-single-verify-cloud-dispatch-1 --output "$EVIDENCE"
+      - name: Verify original code models and dependencies
+        run: uv run python scripts/check_combined_image.py --image "$DISPATCH_IMAGE" --output "$EVIDENCE/combined-image.json"
+      - name: Verify persistence and process failure recovery
+        run: uv run python scripts/check_combined_lifecycle.py --project "$COMPOSE_PROJECT_NAME" --port 18868 --output "$EVIDENCE/lifecycle.json"
+      - name: Export offline package
+        run: |
+          set -euo pipefail
+          uv run python scripts/package_forecast_dispatch.py --version "$DELIVERY_VERSION" --image "$DISPATCH_IMAGE" --evidence "$EVIDENCE" | tee output/cloud/package-result.json
+      - name: Verify exported image and offline startup
+        run: |
+          export COMPOSE_PROJECT_NAME=fluxcast-offline-delivery-check
+          export DISPATCH_PORT=18869
+          sh "output/combined-delivery-$DELIVERY_VERSION/start.sh"
+          curl --fail --retry 3 http://127.0.0.1:18869/health
+          test "$(docker inspect fluxcast-offline-delivery-check-dispatch-1 --format '{{.Image}}')" = "$(docker image inspect "$DISPATCH_IMAGE" --format '{{.Id}}')"
+      - name: Publish verified delivery
+        run: |
+          set -euo pipefail
+          zip -j output/cloud/validation-evidence.zip "$EVIDENCE"/*.json output/cloud/pytest.xml output/cloud/package-result.json output/cloud/scope.json
+          git archive --format=zip --output="output/cloud/source-$GITHUB_SHA.zip" HEAD
+          printf 'Verified Linux AMD64 joint delivery. Source commit: %s\n\nContains unchanged single-step prediction and dispatch, updated 96-step prediction, station actuals and same-calendar-batch deviation. Original prediction call frequency is preserved.\n\nSource tests, real forecast integration, original-model provenance, recreation and offline startup checks passed. Platform-server acceptance remains required.\n\nWorkflow: %s/%s/actions/runs/%s\n' "$GITHUB_SHA" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" > output/cloud/release-notes.md
+          gh release create "$DELIVERY_VERSION" \
+            "output/jingneng-fluxcast-combined-amd64-$DELIVERY_VERSION.zip" \
+            "output/jingneng-fluxcast-combined-amd64-$DELIVERY_VERSION.sha256" \
+            output/cloud/validation-evidence.zip "output/cloud/source-$GITHUB_SHA.zip" \
+            --target "$GITHUB_SHA" --title "Combined delivery $DELIVERY_VERSION (AMD64)" \
+            --notes-file output/cloud/release-notes.md
+          echo "Release: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/$DELIVERY_VERSION" >> "$GITHUB_STEP_SUMMARY"
+      - name: Collect diagnostics
+        if: always()
+        run: |
+          docker ps -a
+          docker system df
+          docker compose --env-file deploy/forecast-dispatch/.env.example -f deploy/forecast-dispatch/compose.yaml logs --no-color --tail 150 > output/cloud/container.log 2>&1 || true
+          df -h .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: combined-validation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            output/cloud/*.json
+            output/cloud/*.xml
+            output/cloud/*.log
+            output/forecast-integration/cloud-verified/*.json
+            output/forecast-integration/cloud-verified/*.txt
+          retention-days: 14

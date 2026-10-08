@@ -1,0 +1,187 @@
+{
+  "event_key": "JNH.Fluxcast.Compute",
+  "result_point": [
+    {
+      "varname": "GARD_actualMW",
+      "timestamp": "2026-09-21 10:00:00",
+      "value": 0.0
+    },
+    {
+      "varname": "JFRD_actualMW",
+      "timestamp": "2026-09-21 10:00:00",
+      "value": 0.0
+    },
+    {
+      "varname": "JQRD_actualMW",
+      "timestamp": "2026-09-21 10:00:00",
+      "value": 0.0
+    },
+    {
+      "varname": "JXRD_actualMW",
+      "timestamp": "2026-09-21 10:00:00",
+      "value": 0.0
+    },
+    {
+      "varname": "JYRD_actualMW",
+      "timestamp": "2026-09-21 10:00:00",
+      "value": 0.0
+    },
+    {
+      "varname": "SZRD_actualMW",
+      "timestamp": "2026-09-21 10:00:00",
+      "value": 0.0
+    },
+    {
+      "varname": "WLRD_actualMW",
+      "timestamp": "2026-09-21 10:00:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_1_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 10.0
+    },
+    {
+      "varname": "farm_2_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_3_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_4_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_7_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_8_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_10_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_11_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_12_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_13_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_16_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_17_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_19_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_20_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_21_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_22_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_23_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "farm_28_available_MW",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 0.0
+    },
+    {
+      "varname": "totalPowerForecast",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": 1000.0
+    }
+  ],
+  "extra_info": [
+    {
+      "varname": "GARD_actualStatus",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": "实测有效"
+    },
+    {
+      "varname": "JFRD_actualStatus",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": "实测有效"
+    },
+    {
+      "varname": "JQRD_actualStatus",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": "实测有效"
+    },
+    {
+      "varname": "JXRD_actualStatus",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": "实测有效"
+    },
+    {
+      "varname": "JYRD_actualStatus",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": "实测有效"
+    },
+    {
+      "varname": "SZRD_actualStatus",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": "实测有效"
+    },
+    {
+      "varname": "WLRD_actualStatus",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": "实测有效"
+    },
+    {
+      "varname": "calculationStatus",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": "部分结果：未生成优化方案"
+    },
+    {
+      "varname": "calculationDetail",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": "farmId=29：farmId=29缺少timeSeries=1数据"
+    },
+    {
+      "varname": "unavailableResults",
+      "timestamp": "2026-09-21 10:15:00",
+      "value": "七站*_MW优化出力、farm_*_MW接纳计划、grid_buy_MW、objectiveYuan、carbonTon、本轮成本明细、电量、占比、adjustmentMW、planStatus、balanceStatus及包含本轮的累计/曲线；farm_29_available_MW"
+    }
+  ]
+}

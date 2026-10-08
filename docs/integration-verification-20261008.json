@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "protected_original_files": 192,
+  "modified_original_files": [
+    "Dockerfile",
+    "README.md",
+    "api.py",
+    "deploy/forecast-dispatch/.env.example",
+    "deploy/forecast-dispatch/compose.yaml",
+    "deploy/forecast-dispatch/vendor-day-release.json",
+    "pyproject.toml",
+    "scripts/check_combined_lifecycle.py",
+    "scripts/check_forecast_bridge_live.py",
+    "scripts/package_forecast_dispatch.py",
+    "src/container_runtime.py",
+    "src/day_forecast_publication.py",
+    "tests/test_day_forecast_publication.py"
+  ],
+  "vendor_commit": "4a38c670cfcf1271244a5127018a618ecdcdc301",
+  "vendor_logic_unchanged": true,
+  "date": "2026-10-08",
+  "baseline_tests": {
+    "passed": 240,
+    "skipped": 2
+  },
+  "full_regression": {
+    "passed": 252,
+    "skipped": 2
+  },
+  "additional_scope_and_integration_tests": {
+    "passed": 13
+  },
+  "final_scope_recheck": {
+    "passed": 1
+  },
+  "ruff": "passed (upstream style exemptions)",
+  "compose_config": "passed",
+  "upstream_runtime_files_matching_github": 30,
+  "upstream_archive_sha256": "f0d33f7f474d47045ff758f54037d8767b4c3eab488ded273417312211647c58",
+  "calendar": "Asia/Shanghai 00:00-23:45",
+  "inference_frequency": "unchanged",
+  "combined_image_built": false,
+  "combined_container_verified": false,
+  "blocker": "Docker Desktop is unable to start"
+}
