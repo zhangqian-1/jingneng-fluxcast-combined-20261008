@@ -27,6 +27,11 @@ jobs:
       EVIDENCE: output/forecast-integration/cloud-verified
     steps:
       - uses: actions/checkout@v5
+      - name: Reserve disk space on disposable runner
+        run: |
+          # These hosted-runner SDKs are unrelated to this Python/Docker build.
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h .
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
