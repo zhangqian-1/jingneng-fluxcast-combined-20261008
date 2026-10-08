@@ -16,14 +16,19 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 UV_COMPILE_BYTECODE=1 \
 # Keep original prediction code/models byte-for-byte, with separate caches.
 RUN mkdir -p /opt/forecast-single \
     && mv /app/app /app/models /app/requirements.txt /opt/forecast-single/ \
-    && python -m venv --without-pip /opt/day-venv \
     && python -m pip install --no-cache-dir "uv==0.12.3"
 COPY --from=forecast_day /app/app /opt/forecast-day/app
 COPY --from=forecast_day /app/models /opt/forecast-day/models
 COPY --from=forecast_day /app/requirements.txt /opt/forecast-day/requirements.txt
-# Both delivered images use CPython 3.11.16. Preserve the day model's packages,
-# including its different SQLAlchemy/filelock versions, in its own environment.
-COPY --from=forecast_day /usr/local/lib/python3.11/site-packages /opt/day-venv/lib/python3.11/site-packages
+# Preserve the newer day image's interpreter, standard library and packages.
+# The single-step image keeps its own original Python patch version unchanged.
+COPY --from=forecast_day /usr/local /opt/day-venv
+RUN rm /opt/day-venv/bin/python \
+    && printf '%s\n' '#!/bin/sh' \
+        'export PYTHONHOME=/opt/day-venv' \
+        'export LD_LIBRARY_PATH=/opt/day-venv/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}' \
+        'exec /opt/day-venv/bin/python3.11 "$@"' > /opt/day-venv/bin/python \
+    && chmod 0755 /opt/day-venv/bin/python
 
 COPY pyproject.toml uv.lock ./
 RUN uv sync --python /usr/local/bin/python --frozen --no-dev --no-install-project
