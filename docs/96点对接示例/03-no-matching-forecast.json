@@ -1,0 +1,207 @@
+{
+  "event_key": "JNH.Fluxcast.Compute",
+  "result_point": [
+    {
+      "varname": "totalPowerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 190.0
+    },
+    {
+      "varname": "GARD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 3.0
+    },
+    {
+      "varname": "GARD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 3.0
+    },
+    {
+      "varname": "GARD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 30.0
+    },
+    {
+      "varname": "GARD_powerShare",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 15.789473684210526
+    },
+    {
+      "varname": "JXRD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 5.0
+    },
+    {
+      "varname": "JXRD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 5.0
+    },
+    {
+      "varname": "JXRD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 50.0
+    },
+    {
+      "varname": "JXRD_powerShare",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 26.31578947368421
+    },
+    {
+      "varname": "JYRD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 3.0
+    },
+    {
+      "varname": "JYRD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 3.0
+    },
+    {
+      "varname": "JYRD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 30.0
+    },
+    {
+      "varname": "JYRD_powerShare",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 15.789473684210526
+    },
+    {
+      "varname": "JQRD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 3.0
+    },
+    {
+      "varname": "JQRD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 3.0
+    },
+    {
+      "varname": "JQRD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 30.0
+    },
+    {
+      "varname": "JQRD_powerShare",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 15.789473684210526
+    },
+    {
+      "varname": "JFRD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 1.0
+    },
+    {
+      "varname": "JFRD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 1.0
+    },
+    {
+      "varname": "JFRD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 10.0
+    },
+    {
+      "varname": "JFRD_powerShare",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 5.263157894736842
+    },
+    {
+      "varname": "WLRD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 2.0
+    },
+    {
+      "varname": "WLRD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 2.0
+    },
+    {
+      "varname": "WLRD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 20.0
+    },
+    {
+      "varname": "WLRD_powerShare",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 10.526315789473683
+    },
+    {
+      "varname": "SZRD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 2.0
+    },
+    {
+      "varname": "SZRD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 2.0
+    },
+    {
+      "varname": "SZRD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 20.0
+    },
+    {
+      "varname": "SZRD_powerShare",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 10.526315789473683
+    }
+  ],
+  "extra_info": [
+    {
+      "varname": "dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "reason",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "no_matching_forecast"
+    },
+    {
+      "varname": "GARD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "JXRD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "JYRD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "JQRD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "JFRD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "WLRD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "SZRD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "message",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "no_matching_forecast: no eligible forecast at the same UTC timestamp; omitted=totalPowerDeviation"
+    },
+    {
+      "varname": "latestActualAt",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "2026-10-08 00:30:00"
+    }
+  ]
+}

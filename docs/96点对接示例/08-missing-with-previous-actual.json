@@ -1,0 +1,172 @@
+{
+  "event_key": "JNH.Fluxcast.Compute",
+  "result_point": [
+    {
+      "varname": "GARD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 2.0
+    },
+    {
+      "varname": "GARD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 3.0
+    },
+    {
+      "varname": "JXRD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 5.0
+    },
+    {
+      "varname": "JXRD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 5.0
+    },
+    {
+      "varname": "JXRD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 50.0
+    },
+    {
+      "varname": "JYRD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 3.0
+    },
+    {
+      "varname": "JYRD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 3.0
+    },
+    {
+      "varname": "JYRD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 30.0
+    },
+    {
+      "varname": "JQRD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 3.0
+    },
+    {
+      "varname": "JQRD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 3.0
+    },
+    {
+      "varname": "JQRD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 30.0
+    },
+    {
+      "varname": "JFRD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 1.0
+    },
+    {
+      "varname": "JFRD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 1.0
+    },
+    {
+      "varname": "JFRD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 10.0
+    },
+    {
+      "varname": "WLRD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 2.0
+    },
+    {
+      "varname": "WLRD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 2.0
+    },
+    {
+      "varname": "WLRD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 20.0
+    },
+    {
+      "varname": "SZRD_validPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 2.0
+    },
+    {
+      "varname": "SZRD_requiredPointCount",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 2.0
+    },
+    {
+      "varname": "SZRD_powerActual",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": 20.0
+    }
+  ],
+  "extra_info": [
+    {
+      "varname": "dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "incomplete"
+    },
+    {
+      "varname": "reason",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "missing_power_points"
+    },
+    {
+      "varname": "missingPoints",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "GARD_11MBY0100000BJ01XQ01"
+    },
+    {
+      "varname": "GARD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "incomplete"
+    },
+    {
+      "varname": "GARD_missingPoints",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "GARD_11MBY0100000BJ01XQ01"
+    },
+    {
+      "varname": "JXRD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "JYRD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "JQRD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "JFRD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "WLRD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "SZRD_dataStatus",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "complete"
+    },
+    {
+      "varname": "message",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "missing_power_points: GARD_11MBY0100000BJ01XQ01=null (value=None); omitted=GARD_powerActual,totalPowerActual,totalPowerDeviation,GARD_powerShare,JXRD_powerShare,JYRD_powerShare,JQRD_powerShare,JFRD_powerShare,WLRD_powerShare,SZRD_powerShare"
+    },
+    {
+      "varname": "latestActualAt",
+      "timestamp": "2026-10-08T00:30:00Z",
+      "value": "2026-10-08 00:15:00"
+    }
+  ]
+}
