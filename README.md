@@ -1,10 +1,12 @@
 # 七站双预测与单断面优化联合服务
 
-## 2026年10月8日96点预测接入
+本项目基于 `jn-algorithm-fluxcast-develop` 联合工程，包含单点功率预测、调度优化和96点功率预测。本次更新其中的96点预测及配套实测、偏差返回，保留原单点预测和调度算法，重新封装为一个联合镜像、一个容器。
 
-96点预测及配套实测的完整字段、返回条件和JSON示例见 [逐字段对接说明（2026-10-09）](docs/96点预测与实测逐字段对接说明-20261009.md)。该补充文档对应已发布版本 `20261008-r37750002283a1`，不改变运行代码；旧安装包内文档未替换，最新说明随仓库及Release文档补充包提供。
+- **源码下载：** [GitHub联合仓库](https://github.com/zhangqian-1/jingneng-fluxcast-combined-20261008)
+- **部署包下载：** [Releases](https://github.com/zhangqian-1/jingneng-fluxcast-combined-20261008/releases)
+- **运行环境：** Linux AMD64（x86_64）
 
-当前工作副本已接入新版96点响应、固定当天曲线的批次信息与实测返回。调度算法和单点预测版本保持原样，预测调用频率保持现有行为。新版镜像采用固定摘要；首次升级使用新的96点历史卷。范围、字段、批次规则和部署注意事项见 [96点新版接入说明](docs/96点新版接入-20261008.md)。联合镜像由 [GitHub Actions](https://github.com/zhangqian-1/jingneng-fluxcast-combined-20261008/actions) 构建，只有源码回归、真实联调、模型来源、重启持久化及离线启动检查全部通过才发布至 [Releases](https://github.com/zhangqian-1/jingneng-fluxcast-combined-20261008/releases)。具体版本以 Release 中的提交号与验证记录为准。
+96点预测及实测返回字段见[逐字段对接说明](docs/96点预测与实测逐字段对接说明-20261009.md)，升级方法见[新版接入说明](docs/96点新版接入-20261008.md)。部署前请完成平台联调。
 
 当前平台入口是 **POST `/api/v1/fluxcast/compute`**。按用户提供的第一份接口约定，请求只需原有的 `point_table`、`frames`、`renewable_data` 三个顶层字段；七个燃机场站和19个新能源场站一次提交、一次返回。完整契约见[平台接口说明](docs/platform-api.md)，本次结构与MD核对见[双预测与单时段优化](docs/双预测与单时段优化-20260926.md)。
 
