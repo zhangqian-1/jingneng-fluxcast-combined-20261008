@@ -46,6 +46,7 @@ def test_openapi_has_only_current_contract():
         "/api/v1/fluxcast/compute",
         "/api/v1/fluxcast/forecast/compute",
         "/api/v1/fluxcast/forecast/latest",
+        "/api/v1/fluxcast/day-forecast/compute",
         "/api/v1/fluxcast/single-period/compute",
         "/api/v1/fluxcast/single-period/status/{snapshot_id}",
     }

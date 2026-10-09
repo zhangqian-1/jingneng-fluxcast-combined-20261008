@@ -211,6 +211,16 @@ def get_day_forecast_client():
     return ForecastClient(os.getenv("DAY_FORECAST_BASE_URL", "http://127.0.0.1:8002"))
 
 
+@app.post("/api/v1/fluxcast/day-forecast/compute", tags=["forecast"])
+def day_forecast_proxy(payload: dict[str, Any]) -> JSONResponse:
+    """Feed only the 96-point model; preserve its complete response and status."""
+    client = get_day_forecast_client()
+    if client is None:
+        raise DispatchServiceError(503, "DAY_FORECAST_DISABLED", "96点预测服务未配置")
+    status, result = client.request(payload)
+    return JSONResponse(result, status_code=status, headers={"Cache-Control": "no-store"})
+
+
 @lru_cache(maxsize=1)
 def get_day_forecast_recovery():
     return DayForecastRecovery()

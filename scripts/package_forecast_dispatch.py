@@ -95,6 +95,7 @@ print(json.dumps({p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes())
     verification = json.loads((args.evidence / "verification.json").read_text("utf-8"))
     combined = json.loads((args.evidence / "combined-image.json").read_text("utf-8"))
     lifecycle = json.loads((args.evidence / "lifecycle.json").read_text("utf-8"))
+    backfill = json.loads((args.evidence / "day-backfill.json").read_text("utf-8"))
     image_id = subprocess.check_output(
         ["docker", "image", "inspect", args.image, "--format", "{{.Id}}"], text=True
     ).strip()
@@ -116,6 +117,9 @@ print(json.dumps({p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes())
         or combined.get("image_id") != image_id
         or not lifecycle.get("passed")
         or lifecycle.get("image_id") != image_id
+        or not backfill.get("passed")
+        or backfill.get("image_id") != image_id
+        or not backfill.get("single_and_dispatch_unchanged")
     ):
         raise ValueError("Fresh container verification for this exact runtime is required")
     originals = {}
@@ -172,7 +176,10 @@ print(json.dumps({p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes())
     shutil.copy2(DEPLOY / "start-delivery.ps1", delivery / "start.ps1")
     shutil.copy2(DEPLOY / "start-delivery.sh", delivery / "start.sh")
     (delivery / "使用说明.md").write_text(
-        (DEPLOY / "README.md").read_text("utf-8").replace("../../docs/", "service/docs/"), "utf-8"
+        (DEPLOY / "README.md").read_text("utf-8").replace("../../docs/", "service/docs/")
+        + "\n96点历史可通过原公开端口单独补传，见[对外补传说明]"
+        "(service/docs/96点历史对外补传说明.md)。\n",
+        "utf-8",
     )
     # The current dashboard is included in service/dashboard and served by the API.
     # Do not bundle a stale offline study from a previous delivery.

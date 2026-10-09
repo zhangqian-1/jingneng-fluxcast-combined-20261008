@@ -73,6 +73,8 @@ jobs:
         run: uv run python scripts/check_forecast_bridge_live.py --combined --forecast-url http://127.0.0.1:18868 --dispatch-container fluxcast-single-verify-cloud-dispatch-1 --output "$EVIDENCE"
       - name: Verify original code models and dependencies
         run: uv run python scripts/check_combined_image.py --image "$DISPATCH_IMAGE" --output "$EVIDENCE/combined-image.json"
+      - name: Verify public day-only history backfill
+        run: uv run python scripts/check_day_backfill_live.py --image "$DISPATCH_IMAGE" --output "$EVIDENCE/day-backfill.json"
       - name: Verify persistence and process failure recovery
         run: uv run python scripts/check_combined_lifecycle.py --project "$COMPOSE_PROJECT_NAME" --port 18868 --output "$EVIDENCE/lifecycle.json"
       - name: Export offline package
@@ -91,7 +93,7 @@ jobs:
           set -euo pipefail
           zip -j output/cloud/validation-evidence.zip "$EVIDENCE"/*.json output/cloud/pytest.xml output/cloud/package-result.json output/cloud/scope.json
           git archive --format=zip --output="output/cloud/source-$GITHUB_SHA.zip" HEAD
-          printf 'Verified Linux AMD64 joint delivery. Source commit: %s\n\nContains unchanged single-step prediction and dispatch, updated 96-step prediction, station actuals and same-calendar-batch deviation. Original prediction call frequency is preserved.\n\nSource tests, real forecast integration, original-model provenance, recreation and offline startup checks passed. Platform-server acceptance remains required.\n\nWorkflow: %s/%s/actions/runs/%s\n' "$GITHUB_SHA" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" > output/cloud/release-notes.md
+          printf 'Verified Linux AMD64 joint delivery. Source commit: %s\n\nAdds POST /api/v1/fluxcast/day-forecast/compute on the existing public service port for day-only history backfill. Seven sequential batches of 96 frames warm the 96-point model without invoking single-step prediction or dispatch. Full day-model responses are returned. All three algorithms are unchanged.\n\nSource tests, real seven-batch public backfill, forecast integration, original-model provenance, recreation and offline startup checks passed. Existing incompatible day caches still require backup and replacement; see service/docs/96点历史对外补传说明.md. Platform-server acceptance remains required.\n\nWorkflow: %s/%s/actions/runs/%s\n' "$GITHUB_SHA" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" > output/cloud/release-notes.md
           gh release create "$DELIVERY_VERSION" \
             "output/jingneng-fluxcast-combined-amd64-$DELIVERY_VERSION.zip" \
             "output/jingneng-fluxcast-combined-amd64-$DELIVERY_VERSION.sha256" \

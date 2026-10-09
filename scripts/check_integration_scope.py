@@ -20,6 +20,7 @@ ALLOWED = {
     "scripts/check_forecast_bridge_live.py",
     "scripts/package_forecast_dispatch.py",
     "tests/test_day_forecast_publication.py",
+    "tests/test_api.py",  # The public route inventory now includes day-only backfill.
 }
 
 
